@@ -46,7 +46,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        getActivity().getActionBar().hide();
 
         View view = inflater.inflate(R.layout.login_fragment_main, container, false);
 
