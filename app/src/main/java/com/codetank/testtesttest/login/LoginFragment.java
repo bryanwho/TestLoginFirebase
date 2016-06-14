@@ -1,6 +1,6 @@
 package com.codetank.testtesttest.login;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,13 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.codetank.testtesttest.LoginActivity;
+import com.codetank.testtesttest.MainActivity;
 import com.codetank.testtesttest.R;
 import com.codetank.testtesttest.data.User;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -73,6 +73,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
                 Log.d("flow", "User Authenticated. UID: " + authData.getUid() + " Token: " + authData.getToken()
                         + " expires: " + authData.getExpires());
 
+                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                startActivity(intent);
 
             }
 
@@ -97,8 +99,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
 
                 User user = new User(userName.getText().toString());
                 String uid = (String) result.get("uid");
+               myFirebaseRef.child(uid).setValue(user);
 
-                myFirebaseRef.child(uid).setValue(user);
+
+                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+
             }
 
             @Override
